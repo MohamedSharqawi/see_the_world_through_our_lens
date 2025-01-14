@@ -1,0 +1,174 @@
+@use "../layout/global" as *;
+@use "../layout/variables" as *;
+@use "../layout/mixins" as *;
+
+
+.firstView {
+    background-image: url(./images/desktop/image-hero.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: hsla(0, 0%, 0%, 0.3);
+    background-blend-mode: darken;
+    @include responsive(450px) {
+        background-image: url(./images/mobile/image-hero.jpg);
+        background-color: initial;
+    }
+
+    &__header {
+        height: 120px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 var(--main-margin);
+    }
+
+    &__visNav {
+        @include responsive(750px) {
+            display: none;
+        }
+        
+        &__list {
+            gap: 25px;
+        }
+
+        &__link {
+            color: var(--white);
+            font-family: Alata;
+            letter-spacing: 0.5px;
+            padding: 0 3px;
+            position: relative;
+
+            &::after {
+                content: "";
+                position: absolute;
+                bottom: -10px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 00%;
+                height: 2px;
+                background-color: var(--white);
+                border-radius: 1px;
+                transition: 0.2s;
+            }
+
+            &:hover::after {
+                width: 50%;
+            }
+        }
+    }
+
+    &__hiddenMenu {
+        position: fixed;
+        top: 0;
+        right: -500px;
+        height: 100vh;
+        width: 350px;
+        background-color: var(--black);
+        padding: 0 var(--main-margin);
+        z-index: 100;
+        transition: 0.3s;
+        @include responsive(420px) {
+            width: 100%;
+        }
+
+        &__header {
+            height: 120px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        &__logo {
+            cursor: pointer;
+        }
+
+        &__close {
+            cursor: pointer;
+        }
+    }
+
+    &__hidNav {
+        &__list {
+            margin-top: 30px;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        &__link {
+            font-family: Josefin;
+            font-weight: 300;
+            text-transform: uppercase;
+            color: var(--white);
+            padding: 25px;
+            padding-top: 30px;
+            border-radius: 6px;
+            transition: 0.2s;
+            font-size: 1.5rem;
+            line-height: 0;
+
+            &:hover {
+                background-color: hsl(0deg 0% 100% / 20%);
+            }
+        }
+    }
+
+    &__fullScreen {
+        width: 100vw;
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: hsla(0, 0%, 0%, 0.3);
+        z-index: 100;
+        display: none;
+    }
+
+    &__humburger {
+        display: none;
+        cursor: pointer;
+        @include responsive(750px) {
+            display: block;
+        }
+    }
+
+    &__content {
+        height: calc(90vh - 120px);
+        display: flex;
+        align-items: center;
+        @include responsive(750px) {
+            font-size: 10px;
+        }
+
+        @include responsive(450px) {
+            font-size: 9px;
+        }
+    }
+    
+    &__h1 {
+        font-family: Josefin;
+        font-weight: 300;
+        font-size: 4.5em;
+        width: 600px;
+        text-transform: uppercase;
+        color: var(--white);
+        margin-left: var(--main-margin);
+        padding: 30px;
+        border: 2px solid var(--white);
+        @include responsive(750px) {
+            width: 400px;
+        }
+        @include responsive(450px) {
+            padding: 20px;
+            width: 310px;
+        }
+    }
+}
+
+#check-response:checked ~ .firstView__hiddenMenu {
+    right: 0px;
+}
+
+#check-response:checked ~ .firstView__fullScreen {
+    display: block;
+}

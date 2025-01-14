@@ -1,0 +1,92 @@
+@use "../layout/global" as *;
+@use "../layout/variables" as *;
+@use "../layout/mixins" as *;
+
+
+.footer {
+    background-color: var(--black);
+    padding: 50px var(--main-margin);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    row-gap: 50px;
+    @include responsive(800px) {
+        flex-direction: column;
+    }
+
+    %common-side {
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+        @include responsive(800px) {
+            align-items: center;
+            gap: 30px;
+        }
+    }
+
+    &__leftSide {
+        @extend %common-side;
+        align-items: flex-start;
+    }
+
+    &__rightSide {
+        @extend %common-side;
+        align-items: flex-end;
+
+        &__copy {
+            color: var(--very-dark-gray);
+            font-size: 0.9rem;
+        }
+    }
+
+    &__list {
+        &__links {
+            gap: 30px;
+            @include responsive(450px) {
+                flex-direction: column;
+                align-items: center;
+                row-gap: 20px;
+            }
+        }
+
+        &__icons {
+            gap: 20px;
+        }
+    }
+
+    %link-hover {
+        position: relative;
+        
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 00%;
+            height: 2px;
+            border-radius: 1px;
+            background-color: var(--white);
+            transition: 0.2s;
+        }
+    }
+    
+    &__link {
+        padding: 0 3px;
+        color: var(--white);
+        letter-spacing: 0.5px;
+        @extend %link-hover;
+
+        &:hover::after {
+            width: 50%;
+        }
+    }
+
+    &__icon {
+        @extend %link-hover;
+        
+        &:hover::after {
+            width: 80%;
+        }
+    }
+}

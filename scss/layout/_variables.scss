@@ -1,0 +1,19 @@
+:root {
+    --white: hsl(0, 0%, 100%);
+    --black: hsl(0, 0%, 0%);
+    --dark-gray: hsl(0, 0%, 55%);
+    --very-dark-gray: hsl(0, 0%, 41%);
+    --main-margin: 7%;
+}
+
+@font-face {
+    font-family: Alata;
+    src: url(./fonts/Alata/Alata-Regular.ttf) format('truetype');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Josefin;
+    src: url(./fonts/Josefin_Sans/JosefinSans-VariableFont_wght.ttf) format('truetype');
+}
+
